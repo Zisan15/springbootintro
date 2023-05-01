@@ -55,5 +55,8 @@ public class Student {
     private List<Book> book = new ArrayList<>();
 
 
+    @OneToOne
+    @JoinColumn(name = "user_name")//ilişki kuracağım
+    private User user;
 
 }
