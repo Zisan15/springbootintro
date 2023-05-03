@@ -42,7 +42,8 @@ public class User {
     )
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> role = new HashSet<>(); //Admin; Student, Admin.  Set yapısı yaptım çünkü uniqe olması gerek içine gelen datalar.
-
+                                              //Set<Role>  ==> bunu List yapınca List'te unique yapı yok. ilk olarak admin girdi ikinci olarak student girdi üçüncüde de admin girerse kabul eder
+                                              //bunu istemiyoruz oyuzden Set yaptık zaten oyüzdsen Enum kullandım.
 
     @JsonIgnore//student'tan user'a, user'dan student'a sonsuz döngüye girmemek için
     @OneToOne(mappedBy = "user")//student entitiy classıyla bağlantı olsun

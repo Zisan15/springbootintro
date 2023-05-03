@@ -19,7 +19,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
 
     @Enumerated(EnumType.STRING)//name isimli field'ı enum type'tan al ama intiger ile değil String ile

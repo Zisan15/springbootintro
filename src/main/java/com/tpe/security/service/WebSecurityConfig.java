@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration//bu classın configurasyon class'ı olduğunu söylüyorum
 @EnableWebSecurity//bütün and pointlerim security katmanıyla karşılaşıcak
-@EnableGlobalMethodSecurity(prePostEnabled = true)//method seviyede yetkilendirme yapacağımı söylüyorum
+//@EnableGlobalMethodSecurity(prePostEnabled = true)//method seviyede yetkilendirme yapacağımı söylüyorum
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //!!! bu classta amacımız : AutManager, Provider, PastEncoder'larımı oluşturup birbirleriyle tanıştırmak
@@ -28,22 +28,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().//csrf korumasını disable yapıyoruz
                 authorizeHttpRequests().//gelen bütün requestleri yetkili mi diye kontrol edeceğiz
                 antMatchers("/",
-                "index.html",
-                "/css/*",
-                "/js/*").permitAll().//bu end-pointleri yetkili mi diye kontrol etme
+                    "index.html",
+                    "/register",
+                    "/css/*",
+                     "/js/*").permitAll().//bu end-pointleri yetkili mi diye kontrol etme
+                //and().
+                //authorizeRequests().antMatchers("/students/**").hasRole("ADMIN"). //end-point seviyesinde yetkilendirme yapmak için bu satırı ekledik
                 anyRequest().//muaf tutulan end-pointler dışında gelen herhangi bir requesti
                 authenticated().//yetkili mi diye kontrol et
                 and().
                 httpBasic();// bunu yaparak Basic Auth kullanılacağını belirtiyoruz
     }
 
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 
+
     @Bean
-    private DaoAuthenticationProvider authProvider() {//dönen değer class veya interface ise bean yazarım
+    public DaoAuthenticationProvider authProvider() {//dönen değer class veya interface ise bean yazarım
 
         DaoAuthenticationProvider autProvider = new DaoAuthenticationProvider();
         autProvider.setPasswordEncoder(passwordEncoder());//encoder ile tanıştırdım

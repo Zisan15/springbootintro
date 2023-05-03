@@ -9,12 +9,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {//burası security'nin service katı
 
     /*
         !!! Bu classta 1. amacım : Security katmanına User objelerini verip UserDetails türüne cevrilmesine sağlamak
