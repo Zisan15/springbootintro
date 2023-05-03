@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    //tüm unique işlerimi username üzerinden yapacağım için
+    //tüm unique işlerimi username üzerinden yapacağım için Optional
     Optional<User> findByUserName(String userName) throws ResourceNotFoundException;//ya yaksa yani null'sa throws ResourceNotFoundException yapabiliriz
 
     /*

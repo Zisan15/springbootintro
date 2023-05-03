@@ -32,4 +32,8 @@ public class Role {
                 "name=" + name +
                 '}';
     }//id'yi cıkardım id bilgisinin bana gelmesini bi yararı yok
+
+
+
+
 }
